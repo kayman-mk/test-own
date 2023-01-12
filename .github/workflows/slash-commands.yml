@@ -9,7 +9,7 @@ jobs:
     name: Validate PR title
     runs-on: ubuntu-latest
     steps:
-    - name: Dump the client payload context
+      - name: Dump the client payload context
         env:
           PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload) }}
         run: echo "$PAYLOAD_CONTEXT"
