@@ -15,24 +15,15 @@ jobs:
           message: |
             Hey @${{ github.event.pull_request.user.login }}! 👋
             
-            Thank you for your contribution to GitLab. Please refer to the contribution flow documentation for a quick overview of the process, and the merge request (MR) guidelines for the detailed process.
-Some contributions require several iterations of review and we try to mentor contributors
-during this process. However, we understand that some reviews can be very time consuming.
-If you would prefer for us to continue the work you've submitted now or at any point in the
-future please let us know.
-If you're okay with being part of our review process (and we hope you are!), there are
-several initial checks we ask you to make:
+            Thank you for your contribution to the project. Please refer to the [contribution rules](blob/main/README.md)
+            for a quick overview of the process.
 
-The merge request description clearly explains:
+            The merge request description clearly explains:
+            
+            - the problem being solved
+            - the best way a reviewer and you can test your changes
 
-The problem being solved.
-The best way a reviewer can test your changes (is it possible to provide an example?).
+            With submitting this PR you confirm that you have the rights of the code added and agree that it will published
+            under the [MIT license](blob/main/LICENSE.md)
 
-
-If the pipeline failed, do you need help identifying what failed?
-Check that Go code follows our Go guidelines.
-Read our contributing to GitLab Runner
-document.
-
-This message was generated automatically.
-You're welcome to improve it.
+            __This message was generated automatically. You are welcome to [improve it](blob/main/LICENSE.md).__
