@@ -21,7 +21,7 @@ jobs:
           # Seed random generator
           RANDOM=$$$(date +%s)
           
-          selectedexpression=${expressions[$RANDOM % ${#RANDOM[*]}]}
+          selectedexpression=${expressions[ $RANDOM % ${#expressions[@]} ]}
           
           echo $selectedexpression
           
