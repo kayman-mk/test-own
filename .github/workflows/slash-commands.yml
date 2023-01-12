@@ -9,25 +9,16 @@ jobs:
     name: Validate PR title
     runs-on: ubuntu-latest
     steps:
-      - name: Dump the client payload context
-        env:
-          PAYLOAD_CONTEXT: ${{ toJson(github) }}
-        run: echo "$PAYLOAD_CONTEXT"
       - name: Determine variables
         id: vars
         run: |
-          expressions=("kayman-mk-github" "npalm-github")
+          maintainers=("xx-npalm-xx" "xx-kayman-mk-xx")
           
-          # Seed random generator
-          RANDOM=$$$(date +%s)
+          RANDOM=$(date +%s)
           
-          selectedexpression=${expressions[ $RANDOM % ${#expressions[@]} ]}
+          maintainer=${expressions[ $RANDOM % ${#expressions[@]} ]}
           
-          echo $selectedexpression
-          echo ${{ toJson(github.event.client_payload.github) }}
-          echo b
-          echo ${{ toJson(github.event.client_payload.github.payload.comment.user.login) }}
-          echo "userid=$selectedexpression" >> $GITHUB_OUTPUT
+          echo "maintainer=$maintainer" >> $GITHUB_OUTPUT
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v2
         with:
@@ -35,4 +26,4 @@ jobs:
           repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
           issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
           body: |
-            Selected user: ${{ steps.vars.outputs.userid }}
+            Hey there @${{ steps.vars.outputs.maintainer }}, could you please help @${{ github.event.client_payload.github.payload.comment.user.login }} out?
