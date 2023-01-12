@@ -13,5 +13,6 @@ jobs:
         with:
           # might need a PAT with public_repo scope
           token: ${{ secrets.GITHUB_TOKEN }}
+          issue-type: pull-request
           commands: |
             help
