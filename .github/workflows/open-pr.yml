@@ -1,0 +1,38 @@
+name: New PR opened
+on:
+  pull_request:
+    types:
+      - open
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - uses: mshick/add-pr-comment@v2
+        with:
+          message: |
+            Hey @${{ github.event.pull_request.user.login }}! 👋
+            
+            Thank you for your contribution to GitLab. Please refer to the contribution flow documentation for a quick overview of the process, and the merge request (MR) guidelines for the detailed process.
+Some contributions require several iterations of review and we try to mentor contributors
+during this process. However, we understand that some reviews can be very time consuming.
+If you would prefer for us to continue the work you've submitted now or at any point in the
+future please let us know.
+If you're okay with being part of our review process (and we hope you are!), there are
+several initial checks we ask you to make:
+
+The merge request description clearly explains:
+
+The problem being solved.
+The best way a reviewer can test your changes (is it possible to provide an example?).
+
+
+If the pipeline failed, do you need help identifying what failed?
+Check that Go code follows our Go guidelines.
+Read our contributing to GitLab Runner
+document.
+
+This message was generated automatically.
+You're welcome to improve it.
