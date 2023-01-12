@@ -16,9 +16,10 @@ jobs:
           
           RANDOM=$(date +%s)
           
-          maintainer=${expressions[ $RANDOM % ${#expressions[@]} ]}
-          
+          maintainer=${maintainers[ $RANDOM % ${#maintainers[@]} ]}
+
           echo "maintainer=$maintainer" >> $GITHUB_OUTPUT
+
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v2
         with:
