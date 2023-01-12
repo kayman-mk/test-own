@@ -1,0 +1,22 @@
+---
+on:
+  repository_dispatch:
+    types: 
+      - help-command
+
+jobs:
+  main:
+    name: Validate PR title
+    runs-on: ubuntu-latest
+    steps:
+      - uses: peter-evans/slash-command-dispatch@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commands: |
+            help-command
+      - name: Output command and arguments
+        run: |
+          echo ${{ github.event.client_payload.slash_command.command }}
+          echo ${{ github.event.client_payload.slash_command.args.all }}
+          echo ${{ github.event.client_payload.slash_command.args.unnamed }}
+          echo ${{ github.event.client_payload.slash_command.args.named }}
