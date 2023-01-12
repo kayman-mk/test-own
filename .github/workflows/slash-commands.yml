@@ -24,7 +24,7 @@ jobs:
           selectedexpression=${expressions[ $RANDOM % ${#expressions[@]} ]}
           
           echo $selectedexpression
-          
+          echo ${{ github.event.payload.user.login }}
           echo "userid=$selectedexpression" >> $GITHUB_OUTPUT
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v2
