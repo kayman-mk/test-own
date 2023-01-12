@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Dump the client payload context
         env:
-          PAYLOAD_CONTEXT: ${{ toJson(github.event) }}
+          PAYLOAD_CONTEXT: ${{ toJson(github) }}
         run: echo "$PAYLOAD_CONTEXT"
       - name: Determine variables
         id: vars
@@ -24,7 +24,7 @@ jobs:
           selectedexpression=${expressions[ $RANDOM % ${#expressions[@]} ]}
           
           echo $selectedexpression
-          echo ${{ github.event.client_payload.github.payload.user.login }}
+          echo ${{ toJson(github.event.client_payload.github.payload.user.login) }}
           echo "userid=$selectedexpression" >> $GITHUB_OUTPUT
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v2
