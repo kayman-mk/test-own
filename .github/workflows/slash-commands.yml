@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Output command and arguments
         run: |
-          echo ${{ github.event.client_payload }}
+          echo ${{ toJson(github.event.client_payload) }}
           echo ${{ github.event.client_payload.slash_command.command }}
           echo ${{ github.event.client_payload.slash_command.args.all }}
           echo ${{ github.event.client_payload.slash_command.args.unnamed }}
