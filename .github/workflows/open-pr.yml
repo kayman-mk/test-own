@@ -15,15 +15,13 @@ jobs:
           message: |
             Hey @${{ github.event.pull_request.user.login }}! 👋
             
-            Thank you for your contribution to the project. Please refer to the [contribution rules](blob/main/README.md)
-            for a quick overview of the process.
+            Thank you for your contribution to the project. Please refer to the [contribution rules](blob/main/README.md) for a quick overview of the process.
 
             The merge request description clearly explains:
             
             - the problem being solved
             - the best way a reviewer and you can test your changes
 
-            With submitting this PR you confirm that you have the rights of the code added and agree that it will published
-            under the [MIT license](blob/main/LICENSE.md)
+            With submitting this PR you confirm that you have the rights of the code added and agree that it will published under the [MIT license](blob/main/LICENSE.md)
 
-            __This message was generated automatically. You are welcome to [improve it](blob/main/LICENSE.md).__
+            _This message was generated automatically. You are welcome to [improve it](blob/main/LICENSE.md)._
