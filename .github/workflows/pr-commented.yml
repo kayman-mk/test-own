@@ -11,6 +11,8 @@ jobs:
       - name: Slash Command Dispatch
         uses: peter-evans/slash-command-dispatch@v3
         with:
+          # might need a PAT with public_repo scope
           token: ${{ secrets.GITHUB_TOKEN }}
+          issue-type: pull-request
           commands: |
             help
