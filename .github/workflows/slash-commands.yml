@@ -9,10 +9,7 @@ jobs:
     name: Validate PR title
     runs-on: ubuntu-latest
     steps:
-      - name: Output command and arguments
-        run: |
-          echo ${{ toJson(github.event.client_payload) }}
-          echo ${{ github.event.client_payload.slash_command.command }}
-          echo ${{ github.event.client_payload.slash_command.args.all }}
-          echo ${{ github.event.client_payload.slash_command.args.unnamed }}
-          echo ${{ github.event.client_payload.slash_command.args.named }}
+    - name: Dump the client payload context
+        env:
+          PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload) }}
+        run: echo "$PAYLOAD_CONTEXT"
