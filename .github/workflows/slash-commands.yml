@@ -11,5 +11,26 @@ jobs:
     steps:
       - name: Dump the client payload context
         env:
-          PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload) }}
+          PAYLOAD_CONTEXT: ${{ toJson(github.event) }}
         run: echo "$PAYLOAD_CONTEXT"
+      - name: Determine variables
+        id: vars
+        run: |
+          expressions=("kayman-mk-github" "npalm-github")
+          
+          # Seed random generator
+          RANDOM=$$$(date +%s)
+          
+          selectedexpression=${expressions[$RANDOM % ${#RANDOM[*]}]}
+          
+          echo $selectedexpression
+          
+          echo "{userid}={$selectedexpression}" >> $GITHUB_OUTPUT
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
+          issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
+          body: |
+            Selected user: ${{ steps.vars.outputs.userid }}
