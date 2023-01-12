@@ -24,7 +24,9 @@ jobs:
           selectedexpression=${expressions[ $RANDOM % ${#expressions[@]} ]}
           
           echo $selectedexpression
-          echo ${{ toJson(github.event.client_payload.github.payload.user.login) }}
+          echo ${{ toJson(github.event.client_payload.github) }}
+          echo b
+          echo ${{ toJson(github.event.client_payload.github.payload) }}
           echo "userid=$selectedexpression" >> $GITHUB_OUTPUT
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v2
