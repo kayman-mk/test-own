@@ -14,7 +14,7 @@ jobs:
             console.log("all")
             console.log(context)
             console.log("pr")
-            console.log(context.issue.pull_request)
+            console.log(context.payload.issue.pull_request)
 
       - name: Slash Command Dispatch
         uses: peter-evans/slash-command-dispatch@v3
