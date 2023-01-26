@@ -23,8 +23,11 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
+            console.log("all")
             console.log(context)
+            console.log(".github")
             console.log(context.payload.client_payload.github)
+            console.log(".slash_command")
             console.log(context.payload.client_payload.slash_command)
             
             // adds a comment to the PR (there is the issue API, which works work PRs too)
