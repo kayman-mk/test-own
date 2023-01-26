@@ -19,7 +19,7 @@ jobs:
             })
             
             core.setOutput("branch_name", result.data.head.ref); 
-            core.setOutput("pr_number", context.payload.client_payload.github.payload.issue.number);
+            core.setOutput("pr_number", context.payload.issue.number);
       - name: Slash Command Dispatch
         uses: peter-evans/slash-command-dispatch@v3
         with:
