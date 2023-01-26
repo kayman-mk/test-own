@@ -16,3 +16,4 @@ jobs:
           issue-type: pull-request
           commands: |
             help
+            finish
