@@ -66,7 +66,7 @@ jobs:
         with:
           ref: 'refs/pull/11/head'
       - run: |
-          git fetch origin pull/11/head:local
+          git fetch origin pull/11/head:kayman-mk-patch-4
           git checkout local
           git push -u origin kayman-mk-patch-4
       - name: Generate Terraform docs
