@@ -17,8 +17,8 @@ jobs:
             console.log(context.payload.client_payload.github)
             console.log(".slash_command")
             console.log(context.payload.client_payload.slash_command)
-            console.log("repo")
-            console.log(context.repo)
+            console.log("pr")
+            console.log(context.issue.pull_request)
 
       - name: Slash Command Dispatch
         uses: peter-evans/slash-command-dispatch@v3
