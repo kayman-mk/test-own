@@ -19,28 +19,16 @@ jobs:
           maintainer=${maintainers[ $RANDOM % ${#maintainers[@]} ]}
 
           echo "maintainer=$maintainer" >> $GITHUB_OUTPUT
-
-      - name: Dump GitHub context
-        id: github_context_step
-        run: echo '${{ toJSON(github) }}'
-      - name: Dump job context
-        run: echo '${{ toJSON(job) }}'
-      - name: Dump steps context
-        run: echo '${{ toJSON(steps) }}'
-      - name: Dump runner context
-        run: echo '${{ toJSON(runner) }}'
-      - name: Dump strategy context
-        run: echo '${{ toJSON(strategy) }}'
-      - name: Dump matrix context
-        run: echo '${{ toJSON(matrix) }}'
         
       - uses: actions/github-script@v6
         with:
           script: |
+            console.log(context)
+            
             // adds a comment to the PR (there is the issue API, which works work PRs too)
             github.rest.issues.createComment({
               issue_number: github.event.client_payload.github.payload.issue.number,
-              owner: context.repo.owner,
+              owner: github.repository_owner,
               repo: context.repo.repo,
               body: 'Hey there @${{ steps.vars.outputs.maintainer }}, could you please help @${{ github.event.client_payload.github.payload.comment.user.login }} out?'
             })
