@@ -8,11 +8,26 @@ jobs:
   slashCommandDispatch:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/github-script@v6
+        id: vars
+        with:
+          script: |
+            result = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.client_payload.github.payload.issue.number
+            })
+            
+            core.setOutput("branch_name", result.data.head.ref); 
+            core.setOutput("pr_number", context.payload.client_payload.github.payload.issue.number);
       - name: Slash Command Dispatch
         uses: peter-evans/slash-command-dispatch@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-type: pull-request
+          static-args: |
+            branch_name=${{ steps.vars.outputs.branch_name }}
+            pull_request_number=${{ steps.vars.outputs.pr_number }}
           commands: |
             help
             finish
