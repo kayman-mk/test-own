@@ -68,6 +68,7 @@ jobs:
       - run: |
           git fetch origin pull/11/head:local
           git checkout local
+          git push -u origin local
       - name: Generate Terraform docs
         uses: terraform-docs/gh-actions@v1.0.0
         with:
