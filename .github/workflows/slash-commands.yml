@@ -60,6 +60,15 @@ jobs:
             console.log(context.payload.client_payload.slash_command)
             console.log("repo")
             console.log(context.repo)
+      
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            console.log(await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.client_payload.github.payload.issue.number
+            }))
             
       - name: Checkout branch
         uses: actions/checkout@v3
