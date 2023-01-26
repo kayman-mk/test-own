@@ -8,6 +8,18 @@ jobs:
   slashCommandDispatch:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            console.log("all")
+            console.log(context)
+            console.log(".github")
+            console.log(context.payload.client_payload.github)
+            console.log(".slash_command")
+            console.log(context.payload.client_payload.slash_command)
+            console.log("repo")
+            console.log(context.repo)
+
       - name: Slash Command Dispatch
         uses: peter-evans/slash-command-dispatch@v3
         with:
