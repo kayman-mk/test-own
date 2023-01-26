@@ -11,16 +11,12 @@ jobs:
     if: github.event.action == 'help-command'
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: Determine variables
         id: vars
         run: |
-          maintainers=("xx-npalm-xx" "xx-kayman-mk-xx")
-          
-          RANDOM=$(date +%s)
-          
-          maintainer=${maintainers[ $RANDOM % ${#maintainers[@]} ]}
-
-          echo "maintainer=$maintainer" >> $GITHUB_OUTPUT
+          maintainer=$(cat CODEOWNERS | grep -oE "@[a-zA-Z0-9_-]+" | shuf -n 1)
+          echo "maintainer=$maintainer" >> "$GITHUB_OUTPUT"
         
       - uses: actions/github-script@v6
         with:
