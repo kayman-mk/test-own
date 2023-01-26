@@ -13,10 +13,6 @@ jobs:
           script: |
             console.log("all")
             console.log(context)
-            console.log(".github")
-            console.log(context.payload.client_payload.github)
-            console.log(".slash_command")
-            console.log(context.payload.client_payload.slash_command)
             console.log("pr")
             console.log(context.issue.pull_request)
 
