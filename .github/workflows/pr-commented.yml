@@ -12,6 +12,15 @@ jobs:
         id: vars
         with:
           script: |
+            console.log("all")
+            console.log(context)
+            console.log(".github")
+            console.log(context.payload.client_payload.github)
+            console.log(".slash_command")
+            console.log(context.payload.client_payload.slash_command)
+            console.log("repo")
+            console.log(context.repo)
+            
             result = await github.rest.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
