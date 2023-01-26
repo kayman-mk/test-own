@@ -62,27 +62,14 @@ jobs:
             console.log("repo")
             console.log(context.repo)
       
-      - uses: actions/github-script@v6
-        id: vars
-        with:
-          script: |
-            result = await github.rest.pulls.get({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.payload.client_payload.github.payload.issue.number
-            })
-            
-            core.setOutput("branch_name", result.data.head.ref); 
-            core.setOutput("pr_number", context.payload.client_payload.github.payload.issue.number);
-            
       - name: Checkout branch
         uses: actions/checkout@v3
         with:
-          ref: "refs/pull/${{ steps.vars.outputs.pr_number }}/head"
+          ref: "refs/pull/${{ context.payload.client_payload.slash_command.args.named.pr_number }}/head"
       - run: |
-          git fetch origin "pull/${{ steps.vars.outputs.pr_number }}/head:${{ steps.vars.outputs.branch_name }}"
-          git checkout ${{ steps.vars.outputs.branch_name }}
-          git push -u origin ${{ steps.vars.outputs.branch_name }}
+          git fetch origin "pull/${{ context.payload.client_payload.slash_command.args.named.pr_number }}/head:${{ context.payload.client_payload.slash_command.args.named.branch_name }}"
+          git checkout ${{ context.payload.client_payload.slash_command.args.named.branch_name }}
+          git push -u origin ${{ context.payload.client_payload.slash_command.args.named.branch_name }}
       - name: Generate Terraform docs
         uses: terraform-docs/gh-actions@v1.0.0
         with:
