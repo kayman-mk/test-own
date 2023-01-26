@@ -61,7 +61,14 @@ jobs:
             console.log(context.payload.client_payload.slash_command)
             console.log("repo")
             console.log(context.repo)
-      
+      - name: Checkout branch
+        uses: actions/checkout@v3
+        with:
+          ref: "refs/pull/${{ context.payload.client_payload.slash_command.args.named.pull_request_number }}/head"
+      - run: |
+          git fetch origin "pull/${{ context.payload.client_payload.slash_command.args.named.pull_request_number }}/head:${{ context.payload.client_payload.slash_command.args.named.branch_name }}"
+          git checkout ${{ context.payload.client_payload.slash_command.args.named.branch_name }}
+          git push -u origin ${{ context.payload.client_payload.slash_command.args.named.branch_name }}
       - name: Generate Terraform docs
         uses: terraform-docs/gh-actions@v1.0.0
         with:
