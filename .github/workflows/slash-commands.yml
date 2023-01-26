@@ -63,6 +63,8 @@ jobs:
             
       - name: Checkout branch
         uses: actions/checkout@v3
+        with:
+          ref: 'refs/pull/11/head'
   
       - name: Generate Terraform docs
         uses: terraform-docs/gh-actions@v1.0.0
