@@ -64,8 +64,8 @@ jobs:
       
       - name: Checkout branch
         uses: actions/checkout@v3
-        with:
-          ref: "refs/pull/${{ context.payload.client_payload.slash_command.args.named.pr_number }}/head"
+        # with:
+          # ref: "refs/pull/${{ context.payload.client_payload.slash_command.args.named.pr_number }}/head"
       - run: |
           git fetch origin "pull/${{ context.payload.client_payload.slash_command.args.named.pr_number }}/head:${{ context.payload.client_payload.slash_command.args.named.branch_name }}"
           git checkout ${{ context.payload.client_payload.slash_command.args.named.branch_name }}
