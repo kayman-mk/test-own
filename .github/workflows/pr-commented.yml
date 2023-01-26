@@ -9,13 +9,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/github-script@v6
+        id: my-script
         with:
+          result-encoding: string
+          retries: 3
           script: |
-            console.log("all")
             console.log(context)
-            console.log("pr")
-            console.log(context.payload.issue.pull_request)
-
+            
+            github.rest.issues.get({
+              issue_number: context.payload.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            })
+            
       - name: Slash Command Dispatch
         uses: peter-evans/slash-command-dispatch@v3
         with:
