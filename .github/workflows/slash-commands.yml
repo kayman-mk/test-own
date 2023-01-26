@@ -47,7 +47,7 @@ jobs:
     if: github.event.action == 'finish-command'
     runs-on: ubuntu-latest
     permissions:
-      pull-requests: write
+      contents: write
     steps:
       - name: Checkout branch
         uses: actions/checkout@v3
