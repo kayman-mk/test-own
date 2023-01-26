@@ -8,7 +8,7 @@ on:
 jobs:
   main:
     name: Validate PR title
-    if: github.event.action == "help-command"
+    if: github.event.action == 'help-command'
     runs-on: ubuntu-latest
     steps:
       - name: Determine variables
@@ -44,7 +44,7 @@ jobs:
 
   finish-command:
     name: "ChatOps: Finish"
-    if: github.event.action == "finish-command"
+    if: github.event.action == 'finish-command'
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
