@@ -12,19 +12,10 @@ jobs:
         id: vars
         with:
           script: |
-            console.log("all")
-            console.log(context)
-            console.log(".github")
-            console.log(context.payload.client_payload.github)
-            console.log(".slash_command")
-            console.log(context.payload.client_payload.slash_command)
-            console.log("repo")
-            console.log(context.repo)
-            
             result = await github.rest.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: context.payload.client_payload.github.payload.issue.number
+              pull_number: context.payload.issue.number
             })
             
             core.setOutput("branch_name", result.data.head.ref); 
